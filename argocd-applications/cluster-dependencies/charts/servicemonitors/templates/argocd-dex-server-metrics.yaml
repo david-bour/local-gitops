@@ -4,6 +4,9 @@ metadata:
   name: argocd-dex-server
   labels:
     release: kube-prometheus-stack
+    app.kubernetes.io/managed-by: "Helm"
+  annotations:
+    meta.helm.sh/release-namespace: "argocd"
 spec:
   selector:
     matchLabels:

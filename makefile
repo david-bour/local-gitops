@@ -19,6 +19,7 @@ argo:
 			--set redis.metrics.serviceMonitor.enabled=true \
 			--set dex.metrics.enabled=true \
 			--set dex.metrics.serviceMonitor.enabled=true \
+			--set-json='configs.cm={"timeout.reconciliation": "10s"}' \
 			--set-json='configs.params={"server.insecure": true}' \
 			--set-json='configs.repositories={"code-challenge-service-config": {"url": "https://github.com/david-bour/code-challenge-service-config.git", "name": "code-challenge-service-config", "type": "git"}, "local-gitops": {"url": "https://github.com/david-bour/local-gitops.git", "name": "local-gitops", "type": "git"}}' \
 		    -n argocd argocd ./argo-cd
