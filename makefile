@@ -31,6 +31,12 @@ argo-pw:
 cluster:
 	./install-k3d.sh
 
+@PHONY: debug
+debug:
+	helm pull prometheus-community/kube-prometheus-stack && \
+	tar -xf *.tgz && \
+	rm *.tgz
+
 @PHONY: clean
 clean:
 	./remove-k3d.sh

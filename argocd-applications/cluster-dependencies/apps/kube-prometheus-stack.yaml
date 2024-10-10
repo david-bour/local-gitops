@@ -12,6 +12,15 @@ spec:
     helm:
       releaseName: kube-prometheus-stack
       values: |
+        kubeScheduler:
+          serviceMonitor:
+            insecureSkipVerify: true
+        kubeEtcd:
+          tlsConfig:
+            insecureSkipVerify: true     
+        kubeApiServer:
+          tlsConfig:
+            insecureSkipVerify: true
         grafana:
           ingress:
             enabled: true
