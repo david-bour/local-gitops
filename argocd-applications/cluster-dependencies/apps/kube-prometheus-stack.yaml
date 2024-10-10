@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: kube-prometheus-stack
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   project: default
   source:
@@ -12,6 +14,8 @@ spec:
     helm:
       releaseName: kube-prometheus-stack
       values: |
+        crds:
+          enabled: false
         kubeScheduler:
           serviceMonitor:
             insecureSkipVerify: true
