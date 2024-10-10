@@ -8,6 +8,7 @@ argo:
 			--set global.domain=argo.localhost \
 			--set server.ingress.enabled=true \
 			--set-json='configs.params={"server.insecure": true}' \
+			--set-json='configs.repositories={"code-challenge-service-config": {"url": "https://github.com/david-bour/code-challenge-service-config.git", "name": "code-challenge-service-config", "type": "git"}}' \
 		    -n argocd argocd ./argo-cd
 
 @PHONY: argo-pw
