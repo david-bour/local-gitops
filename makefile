@@ -33,8 +33,8 @@ cluster:
 
 @PHONY: debug
 debug:
-	helm pull prometheus-community/kube-prometheus-stack && \
-	tar -xf *.tgz && \
+	helm pull prometheus-community/kube-prometheus-stack && tar -xf kube-prometheus-stack*.tgz && \
+	helm pull argo/argo-cd && tar -xf argo-cd*.tgz && \
 	rm *.tgz
 
 @PHONY: clean
