@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dependencies-root
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/david-bour/local-gitops.git
+    targetRevision: HEAD
+    path: argocd-applications/cluster-dependencies/apps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dependencies
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
