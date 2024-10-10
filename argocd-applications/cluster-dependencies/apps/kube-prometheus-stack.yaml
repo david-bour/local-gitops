@@ -12,8 +12,6 @@ spec:
     helm:
       releaseName: kube-prometheus-stack
       values: |
-        alertmanager:
-          enabled: false
         grafana:
           ingress:
             enabled: true
