@@ -10,6 +10,7 @@ spec:
   - list:
       elements:
       - index: "1"
+      - index: "2"
   template:
     metadata:
       name: 'redis-{{.index}}'
