@@ -19,7 +19,7 @@ argo:
 			--set redis.metrics.serviceMonitor.enabled=false \
 			--set dex.metrics.enabled=true \
 			--set dex.metrics.serviceMonitor.enabled=false \
-			--set-json='configs.cm={"timeout.reconciliation": "10s"}' \
+			--set-json='configs.cm={"timeout.reconciliation": "180s"}' \
 			--set-json='configs.params={"server.insecure": true}' \
 			--set-json='configs.repositories={"code-challenge-service-config": {"url": "https://github.com/david-bour/code-challenge-service-config.git", "name": "code-challenge-service-config", "type": "git"}, "local-gitops": {"url": "https://github.com/david-bour/local-gitops.git", "name": "local-gitops", "type": "git"}}' \
 		    -n argocd argocd ./argo-cd
@@ -27,6 +27,11 @@ argo:
 @PHONY: argo-pw
 argo-pw:
 	kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d | pbcopy
+
+@PHONY: bootstrap
+bootstrap:
+	kubectl apply -f argocd-applications/cluster-dependencies/dependencies.root.yaml && \
+	kubectl apply -f argocd-applications/applications/redis.applicationset.yaml
 
 @PHONY: cluster
 cluster:

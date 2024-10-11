@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: redis-applicationset
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - list:
+      elements:
+      - index: "1"
+  template:
+    metadata:
+      name: 'redis-{{.index}}'
+    spec:
+      project: "default"
+      sources:
+        - repoURL: 'oci://registry-1.docker.io/bitnamicharts'
+          chart: redis
+          targetRevision: 20.2.0
+          helm:
+            valueFiles:
+              - $values/argocd-applications/environments/dev
+        - repoURL: https://github.com/david-bour/local-gitops.git
+          targetRevision: HEAD
+          ref: values
+      destination:
+        server: "https://kubernetes.default.svc"
+        namespace: guestbook
