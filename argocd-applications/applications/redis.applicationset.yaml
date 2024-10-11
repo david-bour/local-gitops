@@ -16,8 +16,8 @@ spec:
     spec:
       project: "default"
       sources:
-        - repoURL: 'oci://registry-1.docker.io/bitnamicharts'
-          chart: redis
+        - repoURL: 'oci://registry-1.docker.io'
+          chart: bitnamicharts/redis
           targetRevision: 20.2.0
           helm:
             valueFiles:
