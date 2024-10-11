@@ -16,7 +16,7 @@ spec:
     spec:
       project: "default"
       sources:
-        - repoURL: 'oci://registry-1.docker.io'
+        - repoURL: registry-1.docker.io
           chart: bitnamicharts/redis
           targetRevision: 20.2.0
           helm:
@@ -27,4 +27,8 @@ spec:
           ref: values
       destination:
         server: "https://kubernetes.default.svc"
-        namespace: guestbook
+        namespace: redis
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true
