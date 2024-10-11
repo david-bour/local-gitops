@@ -33,6 +33,10 @@ bootstrap:
 	kubectl apply -f argocd-applications/cluster-dependencies/dependencies.root.yaml && \
 	kubectl apply -f argocd-applications/applications/redis.applicationset.yaml
 
+@PHONY: clean-argo
+clean-argo:
+	kubectl delete -n argocd applicationset/redis-applicationset
+
 @PHONY: cluster
 cluster:
 	./install-k3d.sh
