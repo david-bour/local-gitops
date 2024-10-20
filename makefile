@@ -48,6 +48,10 @@ debug:
 	helm pull argo/argo-cd && tar -xf argo-cd*.tgz && \
 	rm *.tgz
 
+@PHONY: dashboard
+dashboard:
+	echo "https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/examples/dashboard.json"
+
 @PHONY: clean
 clean:
 	./remove-k3d.sh
