@@ -5,6 +5,7 @@ argo:
 	rm *.tgz && \
 	helm upgrade --install \
 		    --create-namespace \
+			--set global.logging.level=debug \
 			--set global.domain=argo.localhost \
 			--set server.ingress.enabled=true \
 			--set server.metrics.enabled=true \
@@ -30,8 +31,8 @@ argo-pw:
 
 @PHONY: bootstrap
 bootstrap:
-	kubectl apply -f argocd-applications/cluster-dependencies/dependencies.root.yaml && \
-	kubectl apply -f argocd-applications/applications/redis.applicationset.yaml
+	kubectl apply -f argocd-applications/root/dependencies.root.yaml && \
+	kubectl apply -f argocd-applications/root/app.root.yaml
 
 @PHONY: clean-argo
 clean-argo:
