@@ -16,10 +16,10 @@ spec:
       name: 'busybox-{{.index}}'
     spec:
       project: "default"
-      sources:
-        - repoURL: https://github.com/david-bour/local-gitops.git
-          path: argocd-applications/applications
-          targetRevision: HEAD
+      source:
+        repoURL: https://github.com/david-bour/local-gitops.git
+        path: argocd-applications/applications
+        targetRevision: HEAD
       destination:
         server: "https://kubernetes.default.svc"
         namespace: busybox
