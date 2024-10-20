@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: redis-applicationset
+  name: busybox-applicationset
   namespace: argocd
 spec:
   goTemplate: true
@@ -11,27 +11,18 @@ spec:
       elements:
       - index: "1"
       - index: "2"
-      - index: "3"
-      - index: "4"
-      - index: "5"
   template:
     metadata:
-      name: 'redis-{{.index}}'
+      name: 'busybox-{{.index}}'
     spec:
       project: "default"
       sources:
-        - repoURL: registry-1.docker.io
-          chart: bitnamicharts/redis
-          targetRevision: 20.2.0
-          helm:
-            valueFiles:
-              - $values/argocd-applications/environments/dev/values.yaml
         - repoURL: https://github.com/david-bour/local-gitops.git
+          path: argocd-applications/applications
           targetRevision: HEAD
-          ref: values
       destination:
         server: "https://kubernetes.default.svc"
-        namespace: redis
+        namespace: busybox
       syncPolicy:
         automated: {}
         syncOptions:
