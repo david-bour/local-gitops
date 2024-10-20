@@ -18,7 +18,7 @@ spec:
       project: "default"
       source:
         repoURL: https://github.com/david-bour/local-gitops.git
-        path: argocd-applications/applications
+        path: argocd-applications/applications/busybox
         targetRevision: HEAD
       destination:
         server: "https://kubernetes.default.svc"
