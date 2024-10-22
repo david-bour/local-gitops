@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: busybox-applicationset
+  name: nginx-applicationset
   namespace: argocd
 spec:
   goTemplate: true
@@ -13,16 +13,16 @@ spec:
       - index: "2"
   template:
     metadata:
-      name: 'busybox-{{.index}}'
+      name: 'nginx-{{.index}}'
     spec:
       project: "default"
       source:
         repoURL: https://github.com/david-bour/local-gitops.git
-        path: argocd-applications/applications/busybox
+        path: argocd-applications/applications/nginx
         targetRevision: HEAD
       destination:
         server: "https://kubernetes.default.svc"
-        namespace: busybox
+        namespace: argocd
       syncPolicy:
         automated: {}
         syncOptions:
