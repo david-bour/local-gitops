@@ -20,6 +20,9 @@ spec:
         repoURL: https://github.com/david-bour/local-gitops.git
         path: argocd-applications/applications/nginx
         targetRevision: HEAD
+        helm:
+          values: |
+            suffix: {{.index}}
       destination:
         server: "https://kubernetes.default.svc"
         namespace: argocd
