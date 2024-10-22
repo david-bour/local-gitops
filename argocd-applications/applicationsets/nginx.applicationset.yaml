@@ -16,7 +16,7 @@ spec:
       - index: "5"
   template:
     metadata:
-      name: 'nginx-{{.index}}'
+      name: 'nginx-appset-{{.index}}'
     spec:
       project: "default"
       source:
