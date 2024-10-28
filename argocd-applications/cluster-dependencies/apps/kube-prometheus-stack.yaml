@@ -28,11 +28,13 @@ spec:
         grafana:
           ingress:
             enabled: true
+            ingressClassName: nginx
             hosts:
               - grafana.ganba.local
         prometheus:
           ingress:
             enabled: true
+            ingressClassName: nginx
             hosts:
               - prometheus.ganba.local
 
