@@ -1,6 +1,6 @@
 import yaml
 
-APP_COUNT=84
+APP_COUNT=30
 
 def generate_apps(n):
     return [{'index': x + 1} for x in range(n)]
