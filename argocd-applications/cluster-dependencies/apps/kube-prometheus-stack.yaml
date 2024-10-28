@@ -32,6 +32,15 @@ spec:
             hosts:
               - grafana.ganba.local
         prometheus:
+          prometheusSpec:
+            storageSpec:
+              volumeClaimTemplate:
+                spec:
+                  storageClassName: local-path
+                  accessModes: ["ReadWriteOnce"]
+                  resources:
+                    requests:
+                      storage: 10Gi
           ingress:
             enabled: true
             ingressClassName: nginx
