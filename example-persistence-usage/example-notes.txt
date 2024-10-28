@@ -1,1 +1,0 @@
-https://adaptivekind.com/persistent-volume-with-k3d/
