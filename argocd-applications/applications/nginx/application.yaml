@@ -14,6 +14,11 @@ spec:
     - repoURL: https://github.com/david-bour/angular
       targetRevision: HEAD
       path: argocd-experiment/charts/apptest-1
+    - repoURL: https://github.com/david-bour/angular
+      targetRevision: HEAD
+      path: argocd-experiment/charts/apptest-2
+    - repoURL: https://github.com/david-bour/angular
+      path: argocd-experiment/charts/apptest-3
   destination:
     server: https://kubernetes.default.svc
     namespace: nginx-app
