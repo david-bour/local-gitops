@@ -20,8 +20,6 @@ spec:
         server: https://kubernetes.default.svc
       project: default
       source:
-        helm:
-          values: 'suffix: {{.index}}'
         path: argocd-applications/applications/nginx
         repoURL: https://github.com/david-bour/local-gitops.git
         targetRevision: HEAD
