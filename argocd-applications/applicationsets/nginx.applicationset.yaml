@@ -5,22 +5,24 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - list:
-      elements:
-      - index: 1
+  - git:
+      repoURL: https://github.com/david-bour/local-gitops.git
+      revision: HEAD
+      directories:
+        - path: argocd-applications/applications/*
   goTemplate: true
   goTemplateOptions:
   - missingkey=error
   template:
     metadata:
-      name: nginx-applicationset-{{.index}}
+      name: '{{.path.basename}}'
     spec:
       destination:
         namespace: argocd
         server: https://kubernetes.default.svc
       project: default
       source:
-        path: argocd-applications/applications/nginx
+        path: '{{.path.path}}'
         repoURL: https://github.com/david-bour/local-gitops.git
         targetRevision: HEAD
       syncPolicy:
