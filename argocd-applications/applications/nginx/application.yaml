@@ -7,10 +7,13 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
-    repoURL: https://github.com/david-bour/local-gitops.git
-    targetRevision: HEAD
-    path: charts/nginx
+  sources:
+    - repoURL: https://github.com/david-bour/local-gitops.git
+      targetRevision: HEAD
+      path: charts/nginx
+    - repoURL: https://github.com/david-bour/angular
+      targetRevision: HEAD
+      path: argocd-experiment/charts/apptest-1
   destination:
     server: https://kubernetes.default.svc
     namespace: nginx-app
