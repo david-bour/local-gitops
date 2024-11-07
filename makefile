@@ -1,3 +1,7 @@
+@PHONY: sync-spam
+sync-spam:
+	argocd app sync app-root
+
 @PHONY: argo
 argo:
 	helm pull argo/argo-cd && \
