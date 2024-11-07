@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/david-bour/local-gitops.git
-    path: argocd-applications/cluster-dependencies/charts/argo-events-event-bus
+    path: argocd-applications/cluster-dependencies/charts/argo-events
     targetRevision: HEAD
   destination:
     server: "https://kubernetes.default.svc"
