@@ -17,6 +17,6 @@ jobs:
       - name: Build and Push
         uses: docker/build-push-action@v6
         with:
-          context: ./echo-app
+          context: "{{defaultContext}}:echo-app"
           push: true
           tags: davidbour/echoserver:${{ github.sha }},davidbour/echoserver:latest
