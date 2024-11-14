@@ -488,7 +488,7 @@ data:
   trigger.on-deployed: |
     - description: Application is synced and healthy. Triggered once per commit.
       oncePer: app.status.operationState?.syncResult?.revision
-      send: [app-deployed, echoserver]
+      send: [echoserver]
       when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded']
         and app.status.health.status == 'Healthy'
   trigger.on-health-degraded: |
