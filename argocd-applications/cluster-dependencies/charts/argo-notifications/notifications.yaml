@@ -524,7 +524,7 @@ data:
     webhook:
       echoserver:
         method: GET
-        path: /
+        path: /candy
 
 
 kind: ConfigMap
