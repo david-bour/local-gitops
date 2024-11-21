@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: final-webhook
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+  labels:
+    run-id: "1"
+spec:
+  template:
+    spec:
+      containers:
+      - name: webhook
+        image: curlimages/curl
+        command:
+        - /bin/sh
+        - -c
+        - |
+          # Wait for all apps to be ready
+          until kubectl wait --for=condition=available deployment -l app.kubernetes.io/instance=echoserver-dev -n echoserver-dev --timeout=300s; do sleep 5; done
+          until kubectl wait --for=condition=available deployment -l app.kubernetes.io/instance=echoserver-2-dev -n echoserver-2-dev --timeout=300s; do sleep 5; done
+          until kubectl wait --for=condition=available deployment -l app.kubernetes.io/instance=echoserver-3-dev -n echoserver-3-dev --timeout=300s; do sleep 5; done
+
+
+          echo "To the moon 🚀🚀🚀"
+          # Send webhook
+          # curl -X POST http://your-webhook-endpoint/all-ready \
+          #   -H 'Content-Type: application/json' \
+          #   -d '{
+          #     "status": "all applications ready",
+          #     "timestamp": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"
+          #   }'
+      serviceAccountName: webhook-sa
+      restartPolicy: Never
