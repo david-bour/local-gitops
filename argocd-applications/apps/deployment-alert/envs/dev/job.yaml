@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: webhook
-        image: curlimages/curl
+        image: bitnami/kubectl:latest
         command:
         - /bin/sh
         - -c
