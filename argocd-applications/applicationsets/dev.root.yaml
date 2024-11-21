@@ -11,7 +11,7 @@ spec:
       repoURL: https://github.com/david-bour/local-gitops.git
       revision: HEAD
       directories:
-      - path: argocd-applications/apps/*
+      - path: argocd-applications/apps/*/envs/dev
   template:      
     metadata:
       name: '{{.path.basename}}' 
