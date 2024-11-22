@@ -40,7 +40,7 @@ spec:
           args: {{ .Values.podArgs }}
           env:
             - name: DELAY_START
-              value: {{ .Values.appSettings.delayStart }}
+              value: {{ .Values.appSettings.delayStart | quote }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
