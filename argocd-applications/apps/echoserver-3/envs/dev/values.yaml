@@ -26,7 +26,7 @@ serviceAccount:
   name: ""
 
 appSettings:
-  delayStart: 0
+  delayStart: 100
 
 podCommand: []
 podArgs: []
