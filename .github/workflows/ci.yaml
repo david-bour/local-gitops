@@ -1,5 +1,8 @@
 name: CI
-on: [push]
+on:
+  push:
+    paths:
+      - echo-app/**
 jobs:
   ci:
     runs-on: ubuntu-latest

@@ -8,7 +8,7 @@ image:
   repository: davidbour/echoserver
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "cafb7ee92d6d2deabad7ce5dea85b477410a8a76"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -26,7 +26,7 @@ serviceAccount:
   name: ""
 
 appSettings:
-  delayStart: 100
+  delayStart: 1000000
 
 podCommand: []
 podArgs: []
