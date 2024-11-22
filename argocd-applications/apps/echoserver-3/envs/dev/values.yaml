@@ -26,7 +26,7 @@ serviceAccount:
   name: ""
 
 podCommand: ["fastapi"]
-podArgs: ["run app/main.py --port 80"]
+podArgs: ["run", "app/main.py --port 80"]
 
 podAnnotations: {}
 podLabels: {}
