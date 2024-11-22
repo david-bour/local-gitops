@@ -38,6 +38,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: {{ .Values.podCommand }}
           args: {{ .Values.podArgs }}
+          env:
+            - name: DELAY_START
+              value: {{ .Values.appSettings.delayStart }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
