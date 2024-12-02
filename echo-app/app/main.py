@@ -12,7 +12,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"status": "healthyish!!"}
+    return {"status": "healthier"}
 
 @app.get('/{echo}')
 def echo(echo: str):
