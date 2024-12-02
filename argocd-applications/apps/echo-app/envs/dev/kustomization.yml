@@ -4,6 +4,8 @@ kind: Kustomization
 resources:
 - ../../base
 
-patchesStrategicMerge:
-- ingress.yml
+patches:
+ - path: ./ingress.yml
+   target:
+    kind: Ingress
 
