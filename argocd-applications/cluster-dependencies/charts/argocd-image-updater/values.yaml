@@ -148,7 +148,7 @@ config:
   gitCommitSigningMethod: ""
 
   # -- Argo CD Image Update log level
-  logLevel: "info"
+  logLevel: "debug"
 
   # -- Argo CD Image Updater registries list configuration. More information [here](https://argocd-image-updater.readthedocs.io/en/stable/configuration/registries/)
   registries: []
