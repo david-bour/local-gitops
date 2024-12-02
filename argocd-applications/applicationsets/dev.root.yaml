@@ -18,6 +18,7 @@ spec:
       annotations:
         argocd-image-updater.argoproj.io/image-list: echoapp=davidbour/echoserver
         argocd-image-updater.argoproj.io/echoapp.update-strategy: newest-build
+        argocd-image-updater.argoproj.io/echoapp.allow-tags: regexp:^[0-9a-f]{40}$
     spec:
       project: default
       source:
