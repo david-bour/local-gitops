@@ -12,9 +12,12 @@ spec:
       revision: HEAD
       directories:
       - path: argocd-applications/apps/*/envs/dev
-  template:      
+  template:
     metadata:
       name: '{{index .path.segments 2}}-{{index .path.segments 4}}' 
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: echoapp=davidbour/echoserver
+        argocd-image-updater.argoproj.io/echoapp.update-strategy: newest-build
     spec:
       project: default
       source:
