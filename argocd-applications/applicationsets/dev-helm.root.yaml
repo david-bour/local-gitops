@@ -24,7 +24,7 @@ spec:
         path: charts/echoapp
         helm:
           valueFiles:
-            - '../{{.path.path}}/values.yaml'
+            - '../../{{.path.path}}/values.yaml'
       destination:
         server: https://kubernetes.default.svc
         namespace: 'helm-{{index .path.segments 2}}-{{index .path.segments 4}}' 
