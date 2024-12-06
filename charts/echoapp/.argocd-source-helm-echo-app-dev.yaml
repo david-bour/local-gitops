@@ -1,0 +1,8 @@
+helm:
+  parameters:
+  - name: image.repository
+    value: davidbour/echoserver
+    forcestring: true
+  - name: image.tag
+    value: d690bb14db680d647782072c382786d8cda9e3a4
+    forcestring: true
