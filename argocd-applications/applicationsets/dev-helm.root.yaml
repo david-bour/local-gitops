@@ -23,6 +23,7 @@ spec:
         argocd-image-updater.argoproj.io/git-repository: https://github.com/david-bour/local-gitops.git
         argocd-image-updater.argoproj.io/echoapp.helm.image-name: image.repository
         argocd-image-updater.argoproj.io/echoapp.helm.image-tag: image.tag
+        argocd-image-updater.argoproj.io/write-back-target: "helmvalues:/argocd-applications/apps-helm/{{index .path.segments 2}}/envs/{{index .path.segments 4}}/values.yaml"
     spec:
       project: default
       source:
