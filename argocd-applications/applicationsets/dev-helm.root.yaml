@@ -15,7 +15,14 @@ spec:
   template:
     metadata:
       name: 'helm-{{index .path.segments 2}}-{{index .path.segments 4}}' 
-      annotations: {}
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: echoapp=davidbour/echoserver
+        argocd-image-updater.argoproj.io/echoapp.update-strategy: newest-build
+        argocd-image-updater.argoproj.io/echoapp.allow-tags: regexp:^[0-9a-f]{40}$
+        argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+        argocd-image-updater.argoproj.io/git-repository: https://github.com/david-bour/local-gitops.git
+        argocd-image-updater.argoproj.io/echoapp.helm.image-name: image.repository
+        argocd-image-updater.argoproj.io/echoapp.helm.image-tag: image.tag
     spec:
       project: default
       source:
