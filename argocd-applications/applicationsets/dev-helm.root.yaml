@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dev-helm-appset
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: https://github.com/david-bour/local-gitops.git
+      revision: HEAD
+      directories:
+      - path: argocd-applications/apps-helm/*/envs/dev
+  template:
+    metadata:
+      name: 'helm-{{index .path.segments 2}}-{{index .path.segments 4}}' 
+      annotations: {}
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/david-bour/local-gitops.git
+        targetRevision: HEAD
+        path: charts/echoapp
+        helm:
+          valueFiles:
+            - '{{.path.path}}/values.yaml'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'helm-{{index .path.segments 2}}-{{index .path.segments 4}}' 
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true  
+        automated:
+          prune: true
+          selfHeal: true
