@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: stage-helm-appset
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: https://github.com/david-bour/local-gitops.git
+      revision: HEAD
+      directories:
+      - path: argocd-applications/apps-helm/*/envs/stage
+  template:
+    metadata:
+      name: 'helm-{{index .path.segments 2}}-{{index .path.segments 4}}' 
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: echoapp=davidbour/echoserver
+        argocd-image-updater.argoproj.io/echoapp.update-strategy: newest-build
+        argocd-image-updater.argoproj.io/echoapp.allow-tags: regexp:^[0-9a-f]{40}$
+        argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+        argocd-image-updater.argoproj.io/git-repository: https://github.com/david-bour/local-gitops.git
+        argocd-image-updater.argoproj.io/echoapp.helm.image-name: image.repository
+        argocd-image-updater.argoproj.io/echoapp.helm.image-tag: image.tag
+        argocd-image-updater.argoproj.io/write-back-target: "helmvalues:/argocd-applications/apps-helm/{{index .path.segments 2}}/envs/{{index .path.segments 4}}/values.yaml"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/david-bour/local-gitops.git
+        targetRevision: HEAD
+        path: charts/echoapp
+        helm:
+          valueFiles:
+            - '../../{{.path.path}}/values.yaml'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'helm-{{index .path.segments 2}}-{{index .path.segments 4}}' 
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true  
+        automated:
+          prune: true
+          selfHeal: true
