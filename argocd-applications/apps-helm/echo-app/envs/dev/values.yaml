@@ -3,3 +3,12 @@ appname: happy-cat
 image:
   repository: davidbour/echoserver
   tag: af293c8bb43796d0729a331d79f1341803a241bb
+
+ingress:
+  enabled: true
+  className: "nginx"
+  hosts:
+    - host: devapp.ganba.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
