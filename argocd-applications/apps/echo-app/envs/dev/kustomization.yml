@@ -8,4 +8,4 @@ patches:
     kind: Ingress
 images:
 - name: davidbour/echoserver
-  newTag: d690bb14db680d647782072c382786d8cda9e3a4
+  newTag: af293c8bb43796d0729a331d79f1341803a241bb
