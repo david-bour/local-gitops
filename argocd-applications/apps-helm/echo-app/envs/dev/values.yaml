@@ -4,9 +4,13 @@ image:
   repository: davidbour/echoserver
   tag: af293c8bb43796d0729a331d79f1341803a241bb
 
+podAnnotations:
+  linkerd.io/inject: enabled
+
 ingress:
   enabled: true
   className: "nginx"
+
   hosts:
     - host: devapp.ganba.local
       paths:

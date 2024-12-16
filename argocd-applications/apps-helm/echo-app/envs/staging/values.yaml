@@ -1,5 +1,8 @@
 appname: happy-dog
 
+podAnnotations:
+  linkerd.io/inject: enabled
+
 image:
   repository: davidbour/echoserver
   tag: af293c8bb43796d0729a331d79f1341803a241bb
