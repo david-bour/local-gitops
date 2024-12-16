@@ -1,18 +1,14 @@
 appname: happy-cat
-
 image:
   repository: davidbour/echoserver
-  tag: af293c8bb43796d0729a331d79f1341803a241bb
-
+  tag: df6859d606f8d04cb80d0a5361dc3a910d476edb
 podAnnotations:
   linkerd.io/inject: enabled
-
 ingress:
   enabled: true
-  className: "nginx"
-
+  className: nginx
   hosts:
-    - host: devapp.ganba.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
+  - host: devapp.ganba.local
+    paths:
+    - path: /
+      pathType: ImplementationSpecific
